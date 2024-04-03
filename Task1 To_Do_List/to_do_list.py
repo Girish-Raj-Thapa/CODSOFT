@@ -66,46 +66,58 @@ def update_task_listbox():
     for task in tasks:
         listbox_tasks.insert(tk.END, f"{task['task']} - Status: {task['status']}")
 
-# Main function
+# Main function to create the GUI and define event handlers
 def main():
     global entry_name, listbox_tasks
 
+    # Create the root window
     root = tk.Tk()
-    root.title("To-Do List")
+    root.title("To-Do List")  # Set the title of the window
 
+    # Create a frame to hold the task entry field and "Add Task" button
     frame_task_list = tk.Frame(root)
     frame_task_list.grid(row=0, column=0, padx=10, pady=10, sticky='w')
 
+    # Label for task entry field
     label_task_entry = tk.Label(frame_task_list, text="Enter task below :")
     label_task_entry.grid(row=0, column=0, padx=5, pady=5, sticky='w')
 
+    # Entry field to input task
     entry_name = tk.Entry(frame_task_list)
     entry_name.grid(row=1, column=0, padx=5, pady=5, sticky='w')
 
+    # Button to add a new task
     button_add_task = tk.Button(frame_task_list, text="Add Task", command=add_task)
     button_add_task.grid(row=2, column=0, padx=5, pady=5, sticky='w')
 
+    # Create a listbox to display tasks
     listbox_tasks = tk.Listbox(root, height=10, width=50)
     listbox_tasks.grid(row=1, column=0, padx=10, pady=10, sticky='w')
 
+    # Add a scrollbar to the listbox
     scrollbar_tasks = tk.Scrollbar(root)
     scrollbar_tasks.grid(row=1, column=1, sticky='ns')
     scrollbar_tasks.config(command=listbox_tasks.yview)
     listbox_tasks.config(yscrollcommand=scrollbar_tasks.set)
 
+    # Button to view all tasks
     button_view_tasks = tk.Button(root, text="View Tasks", command=view_tasks)
     button_view_tasks.grid(row=2, column=0, padx=10, pady=5, sticky='w')
 
+    # Button to update a task
     button_update_task = tk.Button(root, text="Update Task", command=update_task)
     button_update_task.grid(row=3, column=0, padx=10, pady=5, sticky='w')
 
+    # Button to delete a task
     button_delete_task = tk.Button(root, text="Delete Task", command=delete_task)
     button_delete_task.grid(row=4, column=0, padx=10, pady=5, sticky='w')
 
+    # Button to mark a task as complete
     button_mark_complete = tk.Button(root, text="Mark Task as Complete", command=mark_task_complete)
     button_mark_complete.grid(row=5, column=0, padx=10, pady=5, sticky='w')
 
-    root.mainloop()
+    root.mainloop()  # Start the event loop
 
 if __name__ == "__main__":
-    main()
+    main()  # Call the main function if the script is executed directly
+
